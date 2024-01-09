@@ -1,5 +1,5 @@
 import { IFormValues } from "../components/AddSuburbForm/AddSuburbForm";
-import Suburb from "../models/Suburb";
+import Suburb from "../models/suburb";
 
 const apiHost: string = import.meta.env.VITE_API_HOST ?? 'http://localhost:8080';
 

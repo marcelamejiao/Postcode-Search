@@ -7,7 +7,12 @@ export type IFormValues= {
     postcode: string,
 }
 
-export default function AddSuburnForm() {
+type Props = {
+    setAdded(added: number): void, 
+    added: number,
+}
+
+export default function AddSuburnForm({ setAdded, added }: Props) {
     const [error, setError] = useState(false);
 
     const {
@@ -22,7 +27,8 @@ export default function AddSuburnForm() {
             if (error) {
                 setError(false);
             } 
-        await createSuburb(data);
+            await createSuburb(data);
+            setAdded(added + 1);
         } catch (err) {
             setError(true);
         }
