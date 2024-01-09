@@ -50,7 +50,7 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
                     />
                     {errors.name?.type === "required" && (
                         <p role="alert">
-                            Suburb's name is required
+                            Name is required
                         </p>
                     )}
                 </div>
@@ -64,7 +64,7 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
                     />
                     {errors.postcode?.type === "required" && (
                         <p role="alert">
-                            Suburb's postcode is required
+                            Postcode is required
                         </p>
                     )}
                 </div>
