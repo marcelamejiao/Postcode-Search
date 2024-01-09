@@ -18,11 +18,13 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
     const {
         register,
         handleSubmit,
+        reset,
         formState: {errors},
     } = useForm<IFormValues>()
 
     const onSubmit: SubmitHandler<IFormValues> = async (data: IFormValues, event?: React.BaseSyntheticEvent) => {
         event?.preventDefault();
+        event?.target.reset();
         try {
             if (error) {
                 setError(false);
@@ -72,6 +74,11 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
                         value="Save"
                     />
                 </div>
+                <input
+                    type="button"
+                    onClick={() => reset()}
+                    value="Reset"
+                />
             </form>
         </div>
     )
