@@ -1,11 +1,14 @@
-const apiHost = import.meta.env.VITE_API_HOST ?? 'http://localhost:8080';
+import { IFormValues } from "../components/AddSuburbForm/AddSuburbForm";
+import Suburb from "../models/Suburb";
 
-export const getAllSuburbs = async () => {
+const apiHost: string = import.meta.env.VITE_API_HOST ?? 'http://localhost:8080';
+
+export const getAllSuburbs = async (): Promise<Suburb[]> => {
     const response = await fetch(`${apiHost}/suburbs`);
     return await response.json();
 };
 
-export const createSuburb = async (data) => {
+export const createSuburb = async (data: IFormValues) => {
     const response = await fetch(`${apiHost}/suburbs`, {
         method: "POST",
         headers: {
@@ -19,14 +22,14 @@ export const createSuburb = async (data) => {
     }
 };
 
-export const getSuburbsByPostcode = async (postcode) => {
+export const getSuburbsByPostcode = async (postcode: string): Promise<Array<Suburb>> => {
     const response = await fetch(`${apiHost}/suburbs/postcode?` + new URLSearchParams({
         postcode: postcode,
     }));
     return await response.json();
 };
 
-export const getSuburbsByName = async (name) => {
+export const getSuburbsByName = async (name: string): Promise<Array<Suburb>> => {
     const response = await fetch(`${apiHost}/suburbs/name?` + new URLSearchParams({
         name: name,
     }));
