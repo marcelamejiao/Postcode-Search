@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createSuburb } from "../../services/suburbs";
 
-type IFormValues= {
+export type IFormValues= {
     name: string,
     postcode: string,
 }
@@ -16,14 +16,14 @@ export default function AddSuburnForm() {
         formState: {errors},
     } = useForm<IFormValues>()
 
-    const onSubmit: SubmitHandler<IFormValues> = async (data, e) => {
-        e.preventDefault();
+    const onSubmit: SubmitHandler<IFormValues> = async (data: IFormValues, event?: React.BaseSyntheticEvent) => {
+        event?.preventDefault();
         try {
             if (error) {
                 setError(false);
             } 
         await createSuburb(data);
-        } catch (e) {
+        } catch (err) {
             setError(true);
         }
     }
