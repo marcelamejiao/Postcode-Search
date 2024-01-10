@@ -3,7 +3,8 @@ import AddSuburbForm from "./components/AddSuburbForm/AddSuburbForm";
 import { getAllSuburbs } from "./services/suburbs";
 import SuburbList from "./container/SuburbList/SuburbList";
 import Suburb from "./models/suburb";
-
+import NavBar from "./components/NavBar/NavBar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [suburbs, setSuburbs] = useState<Array<Suburb>>([]);
@@ -16,16 +17,28 @@ function App() {
   }, [added]);
 
   return (
-    <>
-      <h1>Postcode Search</h1>
-      <AddSuburbForm 
-        setAdded={setAdded}
-        added={added}
-      />
-      <SuburbList 
-        suburbs={suburbs}
-      />
-    </>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route 
+          path="/"
+          element={
+            <AddSuburbForm 
+            setAdded={setAdded}
+            added={added}
+            />
+          }
+        />
+        <Route
+          path="/suburbs-list"
+          element={
+            <SuburbList 
+            suburbs={suburbs}
+          />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
