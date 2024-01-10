@@ -37,48 +37,61 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <h2>Create a suburb</h2>
-                <div>
-                    <label>Suburb's name:</label>
+        <div className="bg-dark font-roboto flex justify-center">
+            <form onSubmit={handleSubmit(onSubmit)} className="m-0 flex flex-col items-center w-3/5 ">
+                <h2 className="text-white text-5xl tracking-[.05em] mt-4">Create a Suburb</h2>
+                <div className="flex flex-col w-4/5 items-center mt-6">
+                    <div className="w-4/5 flex flex-row justify-items-start">
+                        <label className="text-white">Suburb's name:</label>
+                    </div>
                     <input
+                        className="rounded-sm w-4/5 mt-2 p-2"
                         {...register("name",
                             {required: true}
                         )}
                         aria-invalid={errors.name ? "true" : "false"}
+
                     />
                     {errors.name?.type === "required" && (
-                        <p role="alert">
-                            Name is required
-                        </p>
+                        <div className="w-4/5 flex flex-row justify-items-start">
+                            <p className="text-red" role="alert">
+                                Name is required
+                            </p>
+                        </div>
                     )}
                 </div>
-                <div>
-                    <label>Suburb's postcode:</label>
+                <div className="flex flex-col w-4/5 mt-4 items-center">
+                    <div className="w-4/5 flex flex-row justify-items-start">
+                        <label className="text-white">Suburb's postcode:</label>
+                    </div>
                     <input
+                        className="rounded-sm w-4/5 mt-2 p-2"
                         {...register("postcode",
                             {required: true}
                         )}
                         aria-invalid={errors.postcode ? "true" : "false"}
                     />
                     {errors.postcode?.type === "required" && (
-                        <p role="alert">
-                            Postcode is required
-                        </p>
+                        <div className="w-4/5 flex flex-row justify-items-start">
+                            <p className="text-red" role="alert">Postcode is required</p>
+                        </div>
                     )}
                 </div>
-                <div>
+                <div className="flex flex-col w-4/5 mt-8 items-center">
                     <input
+                        className="bg-fucsia p-3 text-white rounded-sm uppercase tracking-[.50em] w-4/5 hover:bg-fucsiaHover cursor-pointer"
                         type="submit"
                         value="Save"
                     />
                 </div>
-                <input
-                    type="button"
-                    onClick={() => reset()}
-                    value="Reset"
-                />
+                <div className="flex flex-col w-4/5 mt-6 items-center">
+                    <input
+                        className="bg-white p-3 text-dark rounded-sm w-4/5 mb-6 tracking-[.25em] hover:bg-grey cursor-pointer"
+                        type="button"
+                        onClick={() => reset()}
+                        value="Reset"
+                    />
+                </div>
             </form>
         </div>
     )
