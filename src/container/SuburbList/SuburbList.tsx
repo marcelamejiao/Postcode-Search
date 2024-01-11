@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import SuburbRow from "../../components/SuburbRow/SuburbRow"
 import Suburb from "../../models/suburb"
-import { getSuburbsByName } from "../../services/suburbs";
 
 type Props = {
     setNameQuery(nameQuery: string):void,
@@ -36,16 +34,14 @@ export default function SuburbList({ setNameQuery, suburbs, setAdded, added }: P
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-4/5 mt-4 items-center">
-                <div className="w-4/5 flex flex-row justify-items-start">
-                    <label className="text-white">Search the suburb</label>
-                </div>
-                <div className="w-4/5 flex flex-col justify-items-start">
+                <div className="flex flex-col w-4/5 mt-6 items-center">
                     <input
                         className="rounded-sm w-4/5 mt-2 p-2"
                         {...register("name",
                             {required: true}
                         )}
                         aria-invalid={errors.name ? "true" : "false"}
+                        placeholder="Search the suburb by name or postcode"
                     />
                     {errors.name?.type === "required" && (
                         <div className="w-4/5 flex flex-row justify-items-start">
@@ -55,7 +51,7 @@ export default function SuburbList({ setNameQuery, suburbs, setAdded, added }: P
                         </div>
                     )}
                 </div>
-                <div className="w-4/5 flex flex-col justify-items-start">
+                <div className="flex flex-col w-4/5 mt-6 items-center">
                     <input
                         className="bg-fucsia p-3 text-white rounded-sm uppercase tracking-[.50em] w-4/5 hover:bg-fucsiaHover cursor-pointer"
                         type="submit" 

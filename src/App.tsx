@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AddSuburbForm from "./components/AddSuburbForm/AddSuburbForm";
-import { getAllSuburbs, getSuburbsByName } from "./services/suburbs";
+import { getAllSuburbs, getSuburbsByName, getSuburbsByPostcode } from "./services/suburbs";
 import SuburbList from "./container/SuburbList/SuburbList";
 import Suburb from "./models/suburb";
 import NavBar from "./components/NavBar/NavBar";
@@ -12,15 +12,21 @@ function App() {
   const [nameQuery, setNameQuery] = useState<string>("");
 
   useEffect(() => {
-    if(nameQuery === "") {
-      getAllSuburbs().then((suburbs) => {
+    (async () => {
+      if(nameQuery === "") {
+        const suburbs = await getAllSuburbs();
         setSuburbs(suburbs);
-      });
-    } else {
-      getSuburbsByName(nameQuery).then((suburbs) => {
-        setSuburbs(suburbs);
-      });
-    }
+      } else {
+        const suburbResults = await Promise.all([
+          getSuburbsByName(nameQuery),
+          getSuburbsByPostcode(nameQuery)
+        ]);
+        setSuburbs([
+          ...suburbResults[0], 
+          ...suburbResults[1],
+        ])
+      }
+    })()
 
   }, [added, nameQuery]);
 
