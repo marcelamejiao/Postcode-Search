@@ -34,6 +34,8 @@ function App() {
           element={
             <SuburbList 
             suburbs={suburbs}
+            setAdded={setAdded}
+            added={added}
           />
           }
         />

@@ -3,9 +3,11 @@ import Suburb from "../../models/suburb"
 
 type Props = {
     suburbs: Array<Suburb>,
+    setAdded(added: number): void, 
+    added: number,
 }
 
-export default function SuburbList({ suburbs }: Props) {
+export default function SuburbList({ suburbs, setAdded, added }: Props) {
 
     return (
        <div className="m-0 flex flex-col items-center w-full ">
@@ -25,6 +27,8 @@ export default function SuburbList({ suburbs }: Props) {
                                 <SuburbRow
                                     suburb={suburb}
                                     key={suburb.id}
+                                    setAdded={setAdded}
+                                    added={added}
                                 />
                             );
                         })    
