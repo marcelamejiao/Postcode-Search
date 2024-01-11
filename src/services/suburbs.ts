@@ -35,3 +35,13 @@ export const getSuburbsByName = async (name: string): Promise<Array<Suburb>> => 
     }));
     return await response.json();
 };
+
+export const deleteSuburb = async (id: number) => {
+    const response = await fetch(`${apiHost}/suburbs/${id}`, {
+        method: "DELETE",
+    });
+
+    if (!response.ok) {
+        throw new Error("Could not delete this suburb");
+    }
+};
