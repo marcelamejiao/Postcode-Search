@@ -1,4 +1,4 @@
-import SuburbComponent from "../../components/Suburb/Suburb"
+import SuburbRow from "../../components/SuburbRow/SuburbRow"
 import Suburb from "../../models/suburb"
 
 type Props = {
@@ -12,18 +12,22 @@ export default function SuburbList({ suburbs }: Props) {
             <div>
                 <h1>Suburb's List</h1>
             </div>
-            <div>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Postcode</th>
+                </tr>
                 {suburbs.length > 0 && 
                     suburbs.map((suburb) => {
                         return (
-                            <SuburbComponent
+                            <SuburbRow
                                 suburb={suburb}
                                 key={suburb.id}
                             />
                         );
                     })    
                 }
-            </div>
+            </table>
        </> 
     )
 }
