@@ -37,7 +37,7 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
     }
 
     return (
-        <div className="bg-dark flex justify-center">
+        <div className="flex justify-center">
             <form onSubmit={handleSubmit(onSubmit)} className="m-0 flex flex-col items-center w-3/5 ">
                 <h2 className="text-white text-5xl tracking-[.05em] mt-4">Create a Suburb</h2>
                 <div className="flex flex-col w-4/5 items-center mt-6">
