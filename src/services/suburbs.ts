@@ -23,14 +23,14 @@ export const createSuburb = async (data: IFormValues) => {
 };
 
 export const getSuburbsByPostcode = async (postcode: string): Promise<Array<Suburb>> => {
-    const response = await fetch(`${apiHost}/suburbs/postcode?` + new URLSearchParams({
+    const response = await fetch(`${apiHost}/suburbs/by-postcode?` + new URLSearchParams({
         postcode: postcode,
     }));
     return await response.json();
 };
 
 export const getSuburbsByName = async (name: string): Promise<Array<Suburb>> => {
-    const response = await fetch(`${apiHost}/suburbs/name?` + new URLSearchParams({
+    const response = await fetch(`${apiHost}/suburbs/by-name?` + new URLSearchParams({
         name: name,
     }));
     return await response.json();
