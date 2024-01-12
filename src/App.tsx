@@ -5,6 +5,8 @@ import SuburbList from "./container/SuburbList/SuburbList";
 import Suburb from "./models/suburb";
 import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [suburbs, setSuburbs] = useState<Array<Suburb>>([]);
@@ -55,6 +57,12 @@ function App() {
           }
         />
       </Routes>
+      <ToastContainer 
+        position="bottom-right"
+      
+        
+        // progressClassName = {{color: 'red'}}
+      />
     </BrowserRouter>
   )
 }

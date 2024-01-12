@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createSuburb } from "../../services/suburbs";
+import { toast } from 'react-toastify';
 
 export type IFormValues= {
     name: string,
@@ -31,9 +32,11 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
             } 
             await createSuburb(data);
             setAdded(added + 1);
+            
         } catch (err) {
             setError(true);
         }
+        toast.info(`Great! You have created the suburb: ${data.name} , view all the suburbs in the list page!`);
     }
 
     return (

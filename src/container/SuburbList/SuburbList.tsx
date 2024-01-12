@@ -79,9 +79,10 @@ export default function SuburbList({ setNameQuery, suburbs, setAdded, added }: P
                         <th className="px-6 xs:px-1 sm:px-1 py-4">Postcode</th>
                     </tr>
                     {suburbs.length > 0 && 
-                        suburbs.map((suburb) => {
+                        suburbs.map((suburb, index) => {
                             return (
                                 <SuburbRow
+                                    index={index}
                                     suburb={suburb}
                                     key={suburb.id}
                                     setAdded={setAdded}
