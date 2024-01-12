@@ -50,6 +50,7 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
                             {required: true}
                         )}
                         aria-invalid={errors.name ? "true" : "false"}
+                        placeholder="E.g. Sydney"
 
                     />
                     {errors.name?.type === "required" && (
@@ -70,6 +71,7 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
                             {required: true}
                         )}
                         aria-invalid={errors.postcode ? "true" : "false"}
+                        placeholder="E.g. 2000"
                     />
                     {errors.postcode?.type === "required" && (
                         <div className="w-4/5 xs:w-full sm:w-full flex flex-row justify-items-start">
