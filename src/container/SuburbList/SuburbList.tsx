@@ -41,7 +41,7 @@ export default function SuburbList({ setNameQuery, suburbs, setAdded, added }: P
                             {required: true}
                         )}
                         aria-invalid={errors.name ? "true" : "false"}
-                        placeholder="Search the suburb by name or postcode"
+                        placeholder="Search suburb by name or postcode"
                     />
                     {errors.name?.type === "required" && (
                         <div className="w-4/5 xs:w-full sm:w-full flex flex-row justify-items-start">
