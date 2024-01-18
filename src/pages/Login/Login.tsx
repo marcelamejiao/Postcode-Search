@@ -34,12 +34,11 @@ const Login = () => {
             sessionStorage.setItem("credentials", btoa(`${data.username}:${data.password}`));
             await getAllSuburbs();
             navigate("/suburbs-list");
-            
+            toast.info(`Welcome!😜`);
         } catch (err) {
             setError(true);
             setErrorMessage("Username or Password invalid");
         }
-        toast.info(`Welcome!😜`);
     }
 
     return (
@@ -101,8 +100,8 @@ const Login = () => {
                         value="Reset"
                     />
                 </div>
-                <div>
-                    {errorMessage}
+                <div className="flex flex-col w-4/5 xs:w-full sm:w-full mt-6 items-center">
+                    <p className="text-2xl text-red">{errorMessage}</p>
                 </div>
 
             </form>
