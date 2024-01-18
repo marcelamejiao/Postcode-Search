@@ -3,7 +3,7 @@ import Suburb from "../models/suburb";
 
 const apiHost: string = import.meta.env.VITE_API_HOST ?? 'http://localhost:8080';
 
-const credentials = localStorage.getItem("credentials");
+const credentials = sessionStorage.getItem("credentials");
 
 export const getAllSuburbs = async (): Promise<Suburb[]> => {
     const response = await fetch(`${apiHost}/suburbs`, {
