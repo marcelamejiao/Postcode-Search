@@ -18,7 +18,7 @@ export default function SuburbRow({ suburb, setAdded, added, index }: Props) {
         } catch (e: any) {
             console.log(e.message)
         }
-        toast.info(`You have succesfully deleted the suburb: ${name}`);
+        toast.success(`You have succesfully deleted the suburb: ${name}`);
     }
 
     return (

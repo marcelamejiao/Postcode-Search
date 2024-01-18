@@ -36,7 +36,7 @@ export default function AddSuburnForm({ setAdded, added }: Props) {
         } catch (err) {
             setError(true);
         }
-        toast.info(`Great! You have created the suburb: ${data.name} , view all the suburbs in the list page!`);
+        toast.success(`Great! You have created the suburb: ${data.name} , view all the suburbs in the list page!`);
     }
 
     return (
