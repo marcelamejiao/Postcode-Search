@@ -7,14 +7,20 @@ export default function NavBar() {
             <ul className="flex flex-row justify-end">
                 <li className="p-4">
                     <HoverableNavLink
-                        pathName="/"
-                        linkText="Create Suburb">
+                        pathName="/login"
+                        linkText="Login">
                     </HoverableNavLink>
                 </li>
                 <li className="p-4">
                     <HoverableNavLink
                         pathName="/suburbs-list"
                         linkText="Suburb's List">
+                    </HoverableNavLink>
+                </li>
+                <li className="p-4">
+                    <HoverableNavLink
+                        pathName="/"
+                        linkText="Create Suburb">
                     </HoverableNavLink>
                 </li>
             </ul>

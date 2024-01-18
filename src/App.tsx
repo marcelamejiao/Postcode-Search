@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from "./pages/Login/Login";
 
 function App() {
   const [suburbs, setSuburbs] = useState<Array<Suburb>>([]);
@@ -56,12 +57,16 @@ function App() {
           />
           }
         />
+        <Route
+        path="/login"
+        element={
+          <Login 
+          />
+        }
+        />
       </Routes>
       <ToastContainer 
         position="bottom-right"
-      
-        
-        // progressClassName = {{color: 'red'}}
       />
     </BrowserRouter>
   )
