@@ -12,6 +12,7 @@ import Login from "./pages/Login/Login";
 function App() {
   const [suburbs, setSuburbs] = useState<Array<Suburb>>([]);
   const [added, setAdded] = useState<number>(0);
+  const [showDataWhenLoging, setShowDataWhenLoging] = useState<number>(0);
   const [nameQuery, setNameQuery] = useState<string>("");
 
   useEffect(() => {
@@ -31,14 +32,23 @@ function App() {
       }
     })()
 
-  }, [added, nameQuery]);
+  }, [added, showDataWhenLoging, nameQuery]);
 
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route 
+        <Route
           path="/"
+          element={
+            <Login
+            showDataWhenLoging={showDataWhenLoging} 
+            setShowDataWhenLoging={setShowDataWhenLoging}
+            />
+          }
+        />
+        <Route 
+          path="/add-suburb"
           element={
             <AddSuburbForm 
             setAdded={setAdded}
@@ -56,13 +66,6 @@ function App() {
             added={added}
           />
           }
-        />
-        <Route
-        path="/login"
-        element={
-          <Login 
-          />
-        }
         />
       </Routes>
       <ToastContainer 
