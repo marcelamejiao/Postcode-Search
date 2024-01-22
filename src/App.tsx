@@ -15,6 +15,7 @@ function App() {
   const [added, setAdded] = useState<number>(0);
   const [showDataWhenLoggedIn, setShowDataWhenLoggedIn] = useState<number>(0);
   const [nameQuery, setNameQuery] = useState<string>("");
+  const [loggedIn, setLoggedIn] = useState<boolean>(!!sessionStorage.getItem("logged_in"));
 
   useEffect(() => {
     (async () => {
@@ -39,7 +40,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar 
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
+      />
       <Routes>
         <Route
           path="/"
@@ -47,6 +51,7 @@ function App() {
             <Login
             showDataWhenLoggedIn={showDataWhenLoggedIn}
             setShowDataWhenLoggedIn={setShowDataWhenLoggedIn}
+            setLoggedIn={setLoggedIn}
             />
           }
         />

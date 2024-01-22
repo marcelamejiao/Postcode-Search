@@ -6,7 +6,9 @@ import { toast } from 'react-toastify';
 
 type Props = {
     showDataWhenLoggedIn: number;
-    setShowDataWhenLoggedIn(added: number): void, 
+    setShowDataWhenLoggedIn(added: number): void,
+    setLoggedIn(loggedIn: boolean): void,
+
 }
 
 export type FormValues= {
@@ -14,7 +16,7 @@ export type FormValues= {
     password: string,
 }
 
-const Login = ({ showDataWhenLoggedIn, setShowDataWhenLoggedIn }: Props) => {
+const Login = ({ showDataWhenLoggedIn, setShowDataWhenLoggedIn, setLoggedIn }: Props) => {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -36,7 +38,12 @@ const Login = ({ showDataWhenLoggedIn, setShowDataWhenLoggedIn }: Props) => {
             } 
             // Save the credentials in local storage
             sessionStorage.setItem("credentials", btoa(`${data.username}:${data.password}`));
+            // Check if the credentials are correct
             await getAllSuburbs();
+            // Set a variable in the session storage to tell the application when the user is logged in
+            sessionStorage.setItem("logged_in", "true");
+            setLoggedIn(true);
+            // Populate the suburb list
             setShowDataWhenLoggedIn(showDataWhenLoggedIn + 1);
             navigate("/suburbs-list");
             toast.info(`Welcome!😜`);
