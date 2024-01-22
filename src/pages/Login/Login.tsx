@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 type Props = {
-    showDataWhenLoging: number;
-    setShowDataWhenLoging(added: number): void, 
+    showDataWhenLoggedIn: number;
+    setShowDataWhenLoggedIn(added: number): void, 
 }
 
 export type FormValues= {
@@ -14,7 +14,7 @@ export type FormValues= {
     password: string,
 }
 
-const Login = ({ showDataWhenLoging, setShowDataWhenLoging }: Props) => {
+const Login = ({ showDataWhenLoggedIn, setShowDataWhenLoggedIn }: Props) => {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -37,7 +37,7 @@ const Login = ({ showDataWhenLoging, setShowDataWhenLoging }: Props) => {
             // Save the credentials in local storage
             sessionStorage.setItem("credentials", btoa(`${data.username}:${data.password}`));
             await getAllSuburbs();
-            setShowDataWhenLoging(showDataWhenLoging + 1);
+            setShowDataWhenLoggedIn(showDataWhenLoggedIn + 1);
             navigate("/suburbs-list");
             toast.info(`Welcome!😜`);
         } catch (err) {

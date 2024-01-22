@@ -11,8 +11,9 @@ import Login from "./pages/Login/Login";
 
 function App() {
   const [suburbs, setSuburbs] = useState<Array<Suburb>>([]);
+  const [suburbsLoading, setSuburbsLoading] = useState<boolean>(true);
   const [added, setAdded] = useState<number>(0);
-  const [showDataWhenLoging, setShowDataWhenLoging] = useState<number>(0);
+  const [showDataWhenLoggedIn, setShowDataWhenLoggedIn] = useState<number>(0);
   const [nameQuery, setNameQuery] = useState<string>("");
 
   useEffect(() => {
@@ -30,9 +31,11 @@ function App() {
           ...suburbResults[1],
         ])
       }
+
+      setSuburbsLoading(false);
     })()
 
-  }, [added, showDataWhenLoging, nameQuery]);
+  }, [added, showDataWhenLoggedIn, nameQuery]);
 
   return (
     <BrowserRouter>
@@ -42,8 +45,8 @@ function App() {
           path="/"
           element={
             <Login
-            showDataWhenLoging={showDataWhenLoging} 
-            setShowDataWhenLoging={setShowDataWhenLoging}
+            showDataWhenLoggedIn={showDataWhenLoggedIn}
+            setShowDataWhenLoggedIn={setShowDataWhenLoggedIn}
             />
           }
         />
@@ -59,12 +62,15 @@ function App() {
         <Route
           path="/suburbs-list"
           element={
-            <SuburbList 
-            setNameQuery={setNameQuery}
-            suburbs={suburbs}
-            setAdded={setAdded}
-            added={added}
-          />
+            suburbsLoading ?
+             (<div className="flex flex-col w-full mt-6 items-center"><p className="text-3xl text-white">Loading Suburbs...</p></div>)
+             : 
+              <SuburbList 
+                setNameQuery={setNameQuery}
+                suburbs={suburbs}
+                setAdded={setAdded}
+                added={added}
+              />
           }
         />
       </Routes>

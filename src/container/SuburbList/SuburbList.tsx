@@ -14,6 +14,10 @@ export type FormValues= {
 }
 
 export default function SuburbList({ setNameQuery, suburbs, setAdded, added }: Props) {
+    let errorMessage = '';
+    if (suburbs.length === 0) {
+        errorMessage = "There are not suburbs created with this name or postcode";
+    }
 
     const {
         register,
@@ -24,7 +28,7 @@ export default function SuburbList({ setNameQuery, suburbs, setAdded, added }: P
 
     const onSubmit: SubmitHandler<FormValues> = async (data: FormValues, event?: React.BaseSyntheticEvent) => {
         event?.preventDefault();
-        setNameQuery(data.name)
+        setNameQuery(data.name); 
     }
     
     return (
@@ -46,7 +50,7 @@ export default function SuburbList({ setNameQuery, suburbs, setAdded, added }: P
                     {errors.name?.type === "required" && (
                         <div className="w-4/5 xs:w-full sm:w-full flex flex-row justify-items-start">
                             <p className="text-red" role="alert">
-                                Name is required
+                                Please enter a name or postcode
                             </p>
                         </div>
                     )}
@@ -69,6 +73,11 @@ export default function SuburbList({ setNameQuery, suburbs, setAdded, added }: P
                         value="Reset"
                     />
                 </div>
+                {errorMessage && (
+                    <div className="flex flex-col w-4/5 xs:w-full sm:w-full mt-6 items-center">
+                        <p className="text-2xl text-red">{errorMessage}</p>
+                    </div>
+                )}
             </form>
 
             <div className="truncate w-3/5 xs:w-5/6 sm:w-5/6 xs:overflow-x-scroll sm:overflow-x-scroll p-5 xs:p-1 sm:p-1 m-6 xs:mb-4sm:mb-4 bg-white rounded-md text-left  border-grey border-2">
