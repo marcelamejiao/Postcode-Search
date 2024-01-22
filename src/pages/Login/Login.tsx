@@ -4,13 +4,17 @@ import { getAllSuburbs } from "../../services/suburbs";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
+type Props = {
+    showDataWhenLoging: number;
+    setShowDataWhenLoging(added: number): void, 
+}
 
 export type FormValues= {
     username: string,
     password: string,
 }
 
-const Login = () => {
+const Login = ({ showDataWhenLoging, setShowDataWhenLoging }: Props) => {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -33,6 +37,7 @@ const Login = () => {
             // Save the credentials in local storage
             sessionStorage.setItem("credentials", btoa(`${data.username}:${data.password}`));
             await getAllSuburbs();
+            setShowDataWhenLoging(showDataWhenLoging + 1);
             navigate("/suburbs-list");
             toast.info(`Welcome!😜`);
         } catch (err) {
@@ -100,9 +105,12 @@ const Login = () => {
                         value="Reset"
                     />
                 </div>
-                <div className="flex flex-col w-4/5 xs:w-full sm:w-full mt-6 items-center">
-                    <p className="text-2xl text-red">{errorMessage}</p>
-                </div>
+                {errorMessage && (
+                    <div className="flex flex-col w-4/5 xs:w-full sm:w-full mt-6 items-center">
+                        <p className="text-2xl text-red">{errorMessage}</p>
+                    </div>
+                )}
+
 
             </form>
         </div>
