@@ -3,14 +3,12 @@ import Suburb from "../models/suburb";
 
 const apiHost: string = import.meta.env.VITE_API_HOST ?? 'http://localhost:8080';
 
-const credentials = sessionStorage.getItem("credentials");
-
 export const getAllSuburbs = async (): Promise<Suburb[]> => {
     const response = await fetch(`${apiHost}/suburbs`, {
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: `Basic ${credentials}`
+            Authorization: `Basic ${sessionStorage.getItem("credentials")}`
         },
     });
     return await response.json();
@@ -22,7 +20,7 @@ export const createSuburb = async (data: IFormValues) => {
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: `Basic ${credentials}`
+            Authorization: `Basic ${sessionStorage.getItem("credentials")}`
         },
         body: JSON.stringify(data),
     });
@@ -39,7 +37,7 @@ export const getSuburbsByPostcode = async (postcode: string): Promise<Array<Subu
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: `Basic ${credentials}`
+            Authorization: `Basic ${sessionStorage.getItem("credentials")}`
         },
     } );
     return await response.json();
@@ -52,7 +50,7 @@ export const getSuburbsByName = async (name: string): Promise<Array<Suburb>> => 
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: `Basic ${credentials}`
+            Authorization: `Basic ${sessionStorage.getItem("credentials")}`
         },
     });
     return await response.json();
@@ -64,7 +62,7 @@ export const deleteSuburb = async (id: number) => {
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: `Basic ${credentials}`
+            Authorization: `Basic ${sessionStorage.getItem("credentials")}`
         },
     });
 
