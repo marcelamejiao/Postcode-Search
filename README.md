@@ -45,6 +45,13 @@ To start the frontend using the terminal:
 npm run dev 
 ```
 
+**To login use the following credentials:**
+
+```
+Username: user
+Password: password
+```
+
 ## **Technologies Used**
 
 * React
