@@ -112,6 +112,9 @@ const Login = ({ showDataWhenLoggedIn, setShowDataWhenLoggedIn, setLoggedIn }: P
                         value="Reset"
                     />
                 </div>
+                <div className="flex flex-col w-4/5 xs:w-full sm:w-full mt-6 items-center">
+                    <p className="text-xl text-white">Username: user / Password: password</p>
+                </div>
                 {errorMessage && (
                     <div className="flex flex-col w-4/5 xs:w-full sm:w-full mt-6 items-center">
                         <p className="text-2xl text-red">{errorMessage}</p>
